@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="lightVibrant">#FFFFFFFF</color>
+    <color name="vibrant">#FFFFFFFF</color>
+    <color name="darkVibrant">#FFFFFFFF</color>
+    <color name="lightMuted">#FFFFFFFF</color>
+    <color name="muted">#FFFFFFFF</color>
+    <color name="darkMuted">#FFFFFFFF</color>
 </resources>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Wallpaper Generator</string>
+    <string name="logo_phrase">WallGen</string>
 </resources>
