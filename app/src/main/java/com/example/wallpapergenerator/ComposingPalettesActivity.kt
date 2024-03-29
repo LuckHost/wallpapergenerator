@@ -6,6 +6,8 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,7 @@ import androidx.palette.graphics.Palette
 
 class ComposingPalettesActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
+    private lateinit var linearLayout: LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,6 +31,7 @@ class ComposingPalettesActivity : AppCompatActivity() {
         }
 
         imageView = findViewById(R.id.imageView)
+        linearLayout = findViewById(R.id.linearLayout)
     }
 
     val getAction = registerForActivityResult(ActivityResultContracts.GetContent()){
@@ -35,10 +39,12 @@ class ComposingPalettesActivity : AppCompatActivity() {
     }
     fun pickImage(view: View) {
         getAction.launch("image/*")
+        generateColors(view)
+    }
+    fun generateColors(view: View) {
         val bitmap = (imageView.getDrawable() as BitmapDrawable).bitmap
         val palette = Palette.Builder(bitmap).generate()
-
-
+        linearLayout.setBackgroundColor(palette.darkMutedSwatch?.rgb ?: R.color.darkMuted)
     }
     fun createPaletteAsync(bitmap: Bitmap) {
         Palette.from(bitmap)
