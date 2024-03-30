@@ -2,21 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/pickImage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ComposingPalettesActivity">
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="372dp"
-        android:onClick="pickImage"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:visibility="visible"
+    tools:context=".ComposingPalettesActivity"
+    tools:visibility="visible">
 
     <ImageView
         android:id="@+id/imageView"
@@ -26,22 +17,86 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221"
+        app:layout_constraintVertical_bias="0.032"
         app:srcCompat="@drawable/xi_giga" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="176dp"
-        android:layout_height="155dp"
-        android:orientation="horizontal"
+        android:layout_width="355dp"
+        android:layout_height="249dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.551">
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
+        <FrameLayout
+            android:id="@+id/lightVibrantColorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/vibrantColorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/darkVibrantColorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/lightMutedColorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mutedColorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/darkMutedColorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </FrameLayout>
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pickImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="192dp"
+        android:clickable="true"
+        android:contentDescription="aboba"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:srcCompat="@android:drawable/alert_dark_frame" />
+
+    <Button
+        android:id="@+id/generateColors"
+        android:layout_width="189dp"
+        android:layout_height="57dp"
+        android:onClick="generateColors"
+        android:text="Generate colors"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
