@@ -1,6 +1,7 @@
 package com.example.wallpapergenerator
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -60,6 +61,14 @@ class ComposingPalettesActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        syncGeneratedColors()
+        val intent = Intent()
+        setResult(RESULT_OK, intent)
+        finish()
+    }
+
     val getAction = registerForActivityResult(ActivityResultContracts.GetContent()){
         imageView.setImageURI(it)
     }
@@ -84,12 +93,35 @@ class ComposingPalettesActivity : AppCompatActivity() {
     fun generateColors(view: View) {
         val bitmap = (imageView.getDrawable() as BitmapDrawable).bitmap
         val palette = Palette.Builder(bitmap).generate()
-        lightVibrantLayout.setBackgroundColor(palette.lightVibrantSwatch?.rgb ?: R.color.lightVibrant)
-        vibrantLayout.setBackgroundColor(palette.vibrantSwatch?.rgb ?: R.color.vibrant)
-        darkVibrantLayout.setBackgroundColor(palette.darkVibrantSwatch?.rgb ?: R.color.darkVibrant)
-        lightMutedLayout.setBackgroundColor(palette.lightMutedSwatch?.rgb ?: R.color.lightMuted)
-        mutedLayout.setBackgroundColor(palette.mutedSwatch?.rgb ?: R.color.muted)
-        darkMutedLayout.setBackgroundColor(palette.darkMutedSwatch?.rgb ?: R.color.darkMuted)
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        // задаем FrameLayout-ам цвета
+        lightVibrantLayout.setBackgroundColor(palette.lightVibrantSwatch?.rgb ?: 0)
+        // заносим цвета в sharedPreferences, откуда потом будем брать их в слудуюших активити
+        editor.putInt("lightVibrant", palette.lightVibrantSwatch?.rgb ?: 0)
+
+        vibrantLayout.setBackgroundColor(palette.vibrantSwatch?.rgb ?: 0)
+        editor.putInt("vibrant", palette.vibrantSwatch?.rgb ?: 0)
+
+        darkVibrantLayout.setBackgroundColor(palette.darkVibrantSwatch?.rgb ?: 0)
+        editor.putInt("darkVibrant", palette.darkVibrantSwatch?.rgb ?: 0)
+
+        lightMutedLayout.setBackgroundColor(palette.lightMutedSwatch?.rgb ?: 0)
+        editor.putInt("lightMuted", palette.lightMutedSwatch?.rgb ?: 0)
+
+        mutedLayout.setBackgroundColor(palette.mutedSwatch?.rgb ?: 0)
+        editor.putInt("muted", palette.mutedSwatch?.rgb ?: 0)
+
+        darkMutedLayout.setBackgroundColor(palette.darkMutedSwatch?.rgb ?: 0)
+        editor.putInt("darkMuted", palette.darkMutedSwatch?.rgb ?: 0)
+
+        syncGeneratedColors()
+
+        editor.apply()
+    }
+
+    private fun syncGeneratedColors() {
+
     }
     fun createPaletteAsync(bitmap: Bitmap) {
         Palette.from(bitmap)
