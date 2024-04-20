@@ -121,14 +121,28 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="126dp"
+        android:layout_height="52dp"
         android:onClick="runComposingPalettesActivity"
-        android:text="Push me"
+        android:text="Pick colors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
+        app:layout_constraintVertical_bias="0.935" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="131dp"
+        android:layout_height="57dp"
+        android:onClick="runCreateImageActivity"
+        android:text="Create image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.935" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

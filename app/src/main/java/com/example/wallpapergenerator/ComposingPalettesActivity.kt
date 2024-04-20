@@ -61,14 +61,6 @@ class ComposingPalettesActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        syncGeneratedColors()
-        val intent = Intent()
-        setResult(RESULT_OK, intent)
-        finish()
-    }
-
     val getAction = registerForActivityResult(ActivityResultContracts.GetContent()){
         imageView.setImageURI(it)
     }
@@ -115,20 +107,6 @@ class ComposingPalettesActivity : AppCompatActivity() {
         darkMutedLayout.setBackgroundColor(palette.darkMutedSwatch?.rgb ?: 0)
         editor.putInt("darkMuted", palette.darkMutedSwatch?.rgb ?: 0)
 
-        syncGeneratedColors()
-
         editor.apply()
     }
-
-    private fun syncGeneratedColors() {
-
-    }
-    fun createPaletteAsync(bitmap: Bitmap) {
-        Palette.from(bitmap)
-            .generate { palette ->
-                val defaultColor = ContextCompat.getColor(this, R.color.white)
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(palette?.getLightVibrantColor(defaultColor) ?: defaultColor))
-            }
-    }
-
 }

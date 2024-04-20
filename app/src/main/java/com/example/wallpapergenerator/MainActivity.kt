@@ -2,13 +2,22 @@ package com.example.wallpapergenerator
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.Environment
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
 
 class MainActivity : AppCompatActivity() {
     private lateinit var lightVibrantColorMainLayout: FrameLayout
@@ -32,6 +41,9 @@ class MainActivity : AppCompatActivity() {
         setNewTintOnLinLayout()
     }
 
+    /*
+    * Обновляет цвета FrameLayout-ов главного экрана, доставая их из sharedPreferences
+    * */
     private fun setNewTintOnLinLayout() {
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         lightVibrantColorMainLayout.background.setColorFilter(
@@ -63,13 +75,17 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun runCreateImageActivity(view: View) {
+        val intent = Intent(this, CreateImageActivity::class.java)
+        startActivity(intent)
+    }
+
+    /*
+    * Обновляет цвета в главном меню при возобновлении активити
+    * (просто вызвывает setNewTintOnLinLayout)
+    * */
     override fun onResume() {
         super.onResume()
         setNewTintOnLinLayout()
-    }
-
-    fun toastMe(view: View) {
-        val myToast = Toast.makeText(this, "Hello, Toast!", Toast.LENGTH_SHORT)
-        myToast.show()
     }
 }
