@@ -3,16 +3,16 @@ package com.example.wallpapergenerator
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -35,7 +35,6 @@ class ComposingPalettesActivity : AppCompatActivity() {
     private lateinit var pickImageButton: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.composing_palettes)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.pickImage)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -45,6 +44,13 @@ class ComposingPalettesActivity : AppCompatActivity() {
 
         imageView = findViewById(R.id.imageView)
         linearLayout = findViewById(R.id.linearLayout)
+
+        // Устанавливаем первый фон
+        linearLayout.setBackgroundResource(R.drawable.dark_purple_box)
+
+        // Добавляем второй фон поверх первого
+        val drawable = resources.getDrawable(R.drawable.color_picker_bg_wave_2)
+        linearLayout.background = LayerDrawable(arrayOf(linearLayout.background, drawable))
 
         lightVibrantLayout =  findViewById(R.id.lightVibrantColorLayout)
         vibrantLayout =  findViewById(R.id.vibrantColorLayout)
@@ -57,7 +63,7 @@ class ComposingPalettesActivity : AppCompatActivity() {
         pickImageButton.setOnClickListener {
             val pickImg = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             changeImage.launch(pickImg)
-            generateColors(it)
+            generateColors()
         }
     }
 
@@ -69,7 +75,7 @@ class ComposingPalettesActivity : AppCompatActivity() {
         val pickImg = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
         changeImage.launch(pickImg)
 
-        generateColors(view)
+        generateColors()
     }
 
     private val changeImage =
@@ -82,7 +88,7 @@ class ComposingPalettesActivity : AppCompatActivity() {
                 imageView.setImageURI(imgUri)
             }
         }
-    fun generateColors(view: View) {
+    private fun generateColors() {
         val bitmap = (imageView.getDrawable() as BitmapDrawable).bitmap
         val palette = Palette.Builder(bitmap).generate()
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -108,5 +114,10 @@ class ComposingPalettesActivity : AppCompatActivity() {
         editor.putInt("darkMuted", palette.darkMutedSwatch?.rgb ?: 0)
 
         editor.apply()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        generateColors()
     }
 }

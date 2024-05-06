@@ -1,0 +1,21 @@
+
+    <!-- drawable/colors_bloc.xml -->
+<vector
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:aapt="http://schemas.android.com/aapt"
+android:width="1000dp"
+android:height="1252dp"
+android:viewportWidth="1000"
+android:viewportHeight="1252"
+    >
+<group>
+    <clip-path
+        android:pathData="M90 0H910C959.706 0 1000 40.2944 1000 90V1162C1000 1211.71 959.706 1252 910 1252H90C40.2944 1252 0 1211.71 0 1162V90C0 40.2944 40.2944 0 90 0Z"
+        />
+    <path
+        android:pathData="M0 0V1252H1000V0"
+        android:fillColor="#866EE4"
+        />
+</group>
+</vector>
+

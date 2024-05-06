@@ -11,7 +11,7 @@
         android:id="@+id/haeder_wave"
         android:layout_width="wrap_content"
         android:layout_height="136dp"
-        android:background="@drawable/wave_bg_2"
+        android:background="@drawable/main_activity_wave_bg_2"
         android:color="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,11 +27,13 @@
         android:fontFamily="@font/lemon"
         android:text="@string/logo_phrase"
         android:textColor="@color/white"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toBottomOf="@+id/haeder_wave"
+        android:textSize="70sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/haeder_wave" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01" />
 
     <FrameLayout
         android:id="@+id/mutedColorMainLayout"
@@ -45,47 +47,7 @@
         app:layout_constraintBottom_toTopOf="@+id/lightMutedColorMainLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/lightMutedColorMainLayout"
-        android:layout_width="160dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/rounded_shape"
-        android:backgroundTint="@color/lightMuted"
-        app:layout_constraintBottom_toTopOf="@+id/darkMutedColorMainLayout"
-        app:layout_constraintEnd_toEndOf="parent">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/darkMutedColorMainLayout"
-        android:layout_width="160dp"
-        android:layout_height="120dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="204dp"
-        android:background="@drawable/rounded_shape"
-        android:backgroundTint="@color/darkMuted"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/darkVibrantColorMainLayout"
-        android:layout_width="160dp"
-        android:layout_height="120dp"
-        android:layout_marginBottom="204dp"
-        android:background="@drawable/rounded_shape"
-        android:backgroundTint="@color/darkVibrant"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/darkMutedColorMainLayout"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintVertical_bias="0.981">
 
     </FrameLayout>
 
@@ -98,10 +60,23 @@
         android:backgroundTint="@color/lightVibrant"
         app:layout_constraintBottom_toTopOf="@+id/vibrantColorMainLayout"
         app:layout_constraintEnd_toStartOf="@+id/mutedColorMainLayout"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.981">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/darkMutedColorMainLayout"
+        android:layout_width="160dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="160dp"
+        android:background="@drawable/rounded_shape"
+        android:backgroundTint="@color/darkMuted"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
     </FrameLayout>
 
@@ -109,13 +84,40 @@
         android:id="@+id/vibrantColorMainLayout"
         android:layout_width="159dp"
         android:layout_height="120dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_shape"
         android:backgroundTint="@color/vibrant"
         app:layout_constraintBottom_toTopOf="@+id/darkVibrantColorMainLayout"
         app:layout_constraintEnd_toStartOf="@+id/lightMutedColorMainLayout"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/darkVibrantColorMainLayout"
+        android:layout_width="160dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="160dp"
+        android:background="@drawable/rounded_shape"
+        android:backgroundTint="@color/darkVibrant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/darkMutedColorMainLayout"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/lightMutedColorMainLayout"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_shape"
+        android:backgroundTint="@color/lightMuted"
+        app:layout_constraintBottom_toTopOf="@+id/darkMutedColorMainLayout"
+        app:layout_constraintEnd_toEndOf="parent">
 
     </FrameLayout>
 

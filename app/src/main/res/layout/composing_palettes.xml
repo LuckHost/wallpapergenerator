@@ -5,9 +5,24 @@
     android:id="@+id/pickImage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#272727"
     android:visibility="visible"
     tools:context=".ComposingPalettesActivity"
     tools:visibility="visible">
+
+    <View
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="104dp"
+        android:background="#422F8F"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </View>
 
     <ImageView
         android:id="@+id/imageView"
@@ -17,86 +32,114 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.032"
+        app:layout_constraintVertical_bias="0.034"
         app:srcCompat="@drawable/xi_giga" />
+
+    <View
+        android:id="@+id/backgroundWave"
+        android:layout_width="0dp"
+        android:layout_height="480dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/color_picker_bg_wave"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lemon"
+        android:text="@string/found_color"
+        android:textAppearance="@style/found_color"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="355dp"
-        android:layout_height="249dp"
+        android:layout_width="359dp"
+        android:layout_height="369dp"
+        android:background="@drawable/light_purple_box"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.732">
 
         <FrameLayout
             android:id="@+id/lightVibrantColorLayout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/vibrantColorLayout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_margin="6dp"
+            android:layout_marginTop="20dp">
 
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/darkVibrantColorLayout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_margin="6dp">
 
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/lightMutedColorLayout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_margin="6dp">
 
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/mutedColorLayout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_margin="6dp">
 
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/darkMutedColorLayout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_margin="6dp">
 
         </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/vibrantColorLayout"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_margin="6dp">
+
+        </FrameLayout>
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pickImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
         android:clickable="true"
-        android:contentDescription="aboba"
+        android:focusable="true"
+        android:contentDescription="@string/change_image"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:srcCompat="@android:drawable/alert_dark_frame" />
-
-    <Button
-        android:id="@+id/generateColors"
-        android:layout_width="189dp"
-        android:layout_height="57dp"
-        android:onClick="generateColors"
-        android:text="Generate colors"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/alert_dark_frame"
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
