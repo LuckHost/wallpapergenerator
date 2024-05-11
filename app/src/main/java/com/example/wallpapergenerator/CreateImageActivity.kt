@@ -8,13 +8,16 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.LinearGradient
 import android.graphics.Paint
+import android.graphics.Shader
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -24,6 +27,15 @@ import androidx.core.view.WindowInsetsCompat
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.text.SimpleDateFormat
+import java.util.Date
+import kotlin.io.path.Path
+import kotlin.io.path.moveTo
+import kotlin.math.cos
+import kotlin.math.pow
+import kotlin.math.sin
+import kotlin.math.sqrt
+import kotlin.random.Random
 
 class CreateImageActivity : AppCompatActivity() {
     private val REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE = 101
@@ -38,58 +50,42 @@ class CreateImageActivity : AppCompatActivity() {
         }
         checkWritePermission(this)
     }
-    fun checkWritePermission(activity: Activity): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(
-                    activity,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    activity,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE
-                )
-                return false
-            }
+    private fun checkWritePermission(activity: Activity): Boolean {
+        if (ContextCompat.checkSelfPermission(
+                activity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                activity,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE
+            )
+            return false
         }
         return true
     }
     fun saveNewImage(view: View) {
-        val bitmap = createBitmapFromColors(600, 100)
-        saveBitmap(this, bitmap, "my_image.jpg")
-    }
-    fun createBitmapFromColors(width: Int, height: Int): Bitmap {
-        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-
-        // Создаем кисти для каждого цвета
+        // Creating brushes for each color
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val colors = arrayOf(
-            Color.RED,
-            Color.GREEN,
-            Color.BLUE,
-            Color.YELLOW,
-            Color.MAGENTA,
-            Color.CYAN
+            sharedPreferences.getInt("lightVibrant", Color.RED),
+            sharedPreferences.getInt("vibrant", Color.GREEN),
+            sharedPreferences.getInt("darkVibrant", Color.BLUE),
+            sharedPreferences.getInt("lightMuted",Color.YELLOW),
+            sharedPreferences.getInt("muted",Color.MAGENTA),
+            sharedPreferences.getInt("darkMuted",Color.CYAN)
         )
-
-        // Вычисляем ширину каждой полосы
-        val stripeWidth = width / colors.size.toFloat()
-
-        for ((index, color) in colors.withIndex()) {
-            val paint = Paint()
-            paint.color = color
-            canvas.drawRect(
-                stripeWidth * index, 0f,
-                stripeWidth * (index + 1), height.toFloat(),
-                paint
-            )
-        }
-
-        return bitmap
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val currentDate = sdf.format(Date())
+        var bitmapCreator = CreateBitmapFromColors()
+        val bitmap = bitmapCreator.createCirclesBitmap(1080, 2400, colors)
+        saveBitmap(this, bitmap, "my_image5.jpg")
+        val bitmap2 = bitmapCreator.createWavesBitmap(1080, 2400, colors)
+        saveBitmap(this, bitmap2, "my_image7.jpg")
     }
 
-    fun saveBitmap(context: Context, bitmap: Bitmap, filename: String) {
+    private fun saveBitmap(context: Context, bitmap: Bitmap, filename: String) {
         //Generating a file name
         //val filename = "${System.currentTimeMillis()}.jpg"
 
@@ -129,7 +125,7 @@ class CreateImageActivity : AppCompatActivity() {
         fos?.use {
             //Finally writing the bitmap to the output stream that we opened
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-            //context?.toast("Saved to Photos")
+            Toast.makeText(context, "The image is saved", Toast.LENGTH_SHORT).show()
         }
     }
 }

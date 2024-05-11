@@ -46,4 +46,7 @@
     </string>
     <string name="image_picker_description">Here you can select an image to collect its main colors.</string>
     <string name="change_image">change image</string>
+    <string name="your_colors">Your colors</string>
+    <string name="pick_colors">Pick colors</string>
+    <string name="create_image">Create image</string>
 </resources>

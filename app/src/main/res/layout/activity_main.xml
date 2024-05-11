@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/haeder_wave"
+        android:id="@+id/header_wave"
         android:layout_width="wrap_content"
         android:layout_height="136dp"
         android:background="@drawable/main_activity_wave_bg_2"
@@ -35,6 +35,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.01" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/lemon"
+        android:text="@string/your_colors"
+        android:textAppearance="@style/found_color"
+        app:layout_constraintBottom_toTopOf="@+id/lightVibrantColorMainLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_wave"
+        app:layout_constraintVertical_bias="0.0" />
+
     <FrameLayout
         android:id="@+id/mutedColorMainLayout"
         android:layout_width="159dp"
@@ -47,9 +62,7 @@
         app:layout_constraintBottom_toTopOf="@+id/lightMutedColorMainLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981">
-
-    </FrameLayout>
+        app:layout_constraintVertical_bias="0.978"></FrameLayout>
 
     <FrameLayout
         android:id="@+id/lightVibrantColorMainLayout"
@@ -60,23 +73,10 @@
         android:backgroundTint="@color/lightVibrant"
         app:layout_constraintBottom_toTopOf="@+id/vibrantColorMainLayout"
         app:layout_constraintEnd_toStartOf="@+id/mutedColorMainLayout"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/darkMutedColorMainLayout"
-        android:layout_width="160dp"
-        android:layout_height="120dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="160dp"
-        android:background="@drawable/rounded_shape"
-        android:backgroundTint="@color/darkMuted"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintVertical_bias="0.978">
 
     </FrameLayout>
 
@@ -89,21 +89,7 @@
         android:backgroundTint="@color/vibrant"
         app:layout_constraintBottom_toTopOf="@+id/darkVibrantColorMainLayout"
         app:layout_constraintEnd_toStartOf="@+id/lightMutedColorMainLayout"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/darkVibrantColorMainLayout"
-        android:layout_width="160dp"
-        android:layout_height="120dp"
-        android:layout_marginBottom="160dp"
-        android:background="@drawable/rounded_shape"
-        android:backgroundTint="@color/darkVibrant"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/darkMutedColorMainLayout"
-        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent">
 
     </FrameLayout>
@@ -117,34 +103,82 @@
         android:background="@drawable/rounded_shape"
         android:backgroundTint="@color/lightMuted"
         app:layout_constraintBottom_toTopOf="@+id/darkMutedColorMainLayout"
+        app:layout_constraintEnd_toEndOf="parent"></FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/darkVibrantColorMainLayout"
+        android:layout_width="160dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="216dp"
+        android:background="@drawable/rounded_shape"
+        android:backgroundTint="@color/darkVibrant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/darkMutedColorMainLayout"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/darkMutedColorMainLayout"
+        android:layout_width="160dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="216dp"
+        android:background="@drawable/rounded_shape"
+        android:backgroundTint="@color/darkMuted"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
     </FrameLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="126dp"
-        android:layout_height="52dp"
-        android:onClick="runComposingPalettesActivity"
-        android:text="Pick colors"
+    <View
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="139dp"
+        android:background="#422F8F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintVertical_bias="1.0">
+    </View>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="160dp"
+        android:layout_height="65dp"
+        android:backgroundTint="#422F8E"
+        android:onClick="runComposingPalettesActivity"
+        android:text="@string/pick_colors"
+        android:fontFamily="@font/lemon"
+        android:textSize="14sp"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.941"
+        app:strokeColor="#E3E3E3"
+        app:strokeWidth="3dp" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="131dp"
-        android:layout_height="57dp"
+        android:layout_width="160dp"
+        android:layout_height="65dp"
+        android:backgroundTint="#AEA2FB"
         android:onClick="runCreateImageActivity"
-        android:text="Create image"
+        android:text="@string/create_image"
+        android:fontFamily="@font/lemon"
+        android:textSize="14sp"
+        app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintVertical_bias="0.941" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
