@@ -62,7 +62,9 @@
         app:layout_constraintBottom_toTopOf="@+id/lightMutedColorMainLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.978"></FrameLayout>
+        app:layout_constraintVertical_bias="0.978">
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/lightVibrantColorMainLayout"
@@ -103,7 +105,9 @@
         android:background="@drawable/rounded_shape"
         android:backgroundTint="@color/lightMuted"
         app:layout_constraintBottom_toTopOf="@+id/darkMutedColorMainLayout"
-        app:layout_constraintEnd_toEndOf="parent"></FrameLayout>
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/darkVibrantColorMainLayout"

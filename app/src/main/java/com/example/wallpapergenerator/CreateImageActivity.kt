@@ -11,12 +11,16 @@ import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Shader
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +28,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -65,6 +70,7 @@ class CreateImageActivity : AppCompatActivity() {
         }
         return true
     }
+
     fun saveNewImage(view: View) {
         // Creating brushes for each color
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -78,11 +84,17 @@ class CreateImageActivity : AppCompatActivity() {
         )
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
         val currentDate = sdf.format(Date())
-        var bitmapCreator = CreateBitmapFromColors()
-        val bitmap = bitmapCreator.createCirclesBitmap(1080, 2400, colors)
-        saveBitmap(this, bitmap, "my_image5.jpg")
-        val bitmap2 = bitmapCreator.createWavesBitmap(1080, 2400, colors)
-        saveBitmap(this, bitmap2, "my_image7.jpg")
+        val switch: Switch
+        switch = findViewById(R.id.switch3)
+
+        val bitmapCreator = CreateBitmapFromColors()
+        if (switch.isChecked) {
+            val bitmap = bitmapCreator.createWavesBitmap(1080, 2400, colors)
+            saveBitmap(this, bitmap, "${currentDate}image_wallgen.jpg")
+        } else {
+            val bitmap2 = bitmapCreator.createCirclesBitmap(1080, 2400, colors)
+            saveBitmap(this, bitmap2, "${currentDate}image_wallgen.jpg")
+        }
     }
 
     private fun saveBitmap(context: Context, bitmap: Bitmap, filename: String) {

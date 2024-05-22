@@ -5,7 +5,22 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#272727"
     tools:context=".CreateImageActivity">
+
+    <View
+        android:id="@+id/vector_10"
+        android:layout_width="0dp"
+        android:layout_height="391dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/create_image_activity_wave_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/saveImageButton"
@@ -18,4 +33,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.754" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="389dp"
+        android:layout_height="302dp"
+        android:background="@drawable/dark_purple_box"
+        android:backgroundTint="#9A85F0"
+        android:gravity="center|top"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.243">
+
+        <ImageButton
+            android:id="@+id/exampleCircles"
+            android:layout_width="80dp"
+            android:layout_height="220dp"
+            android:layout_margin="26dp"
+            android:layout_weight="1"
+            android:contentDescription=" "
+            app:srcCompat="@drawable/bg_example_circles" />
+
+        <ImageButton
+            android:id="@+id/exampleWaves"
+            android:layout_width="80dp"
+            android:layout_height="220dp"
+            android:layout_margin="26dp"
+            android:layout_weight="1"
+            android:contentDescription=" "
+            app:srcCompat="@drawable/bg_example_waves" />
+
+    </LinearLayout>
+
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="102dp"
+        android:layout_height="67dp"
+        android:text="Switch"
+        app:layout_constraintBottom_toTopOf="@+id/saveImageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vector_10" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
